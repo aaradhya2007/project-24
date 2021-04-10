@@ -1,14 +1,14 @@
 class Paper{
-    constructor(x, y, width, height) {
+    constructor(x, y,r) {
         var options = {
             'isStatic':false,
             'restitution':0.3,
             'friction':0.5,
-            'density':1.2
+            'density':0.3
         }
-        this.body = Bodies.rectangle(x, y, width, height, options);
-        this.width = width;
-        this.height = height;
+        this.body = Bodies.circle(x, y, r, options);
+        this.r=r;
+        this.image=loadImage("paper.png")
         
         World.add(world, this.body);
         
@@ -19,10 +19,10 @@ class Paper{
      var ang=this.body.angle;
      var pos=this.body.position;
      push()
-    
+    translate(pos.x,pos.y)
      rotate(ang)  
-    ellipseMode(RADIUS)
-    ellipse(pos.x,pos.y,this.width,this.height)
+    imageMode(RADIUS)
+    image( this.image,0,0,this.r,this.r)
         pop()
 }
 }
